@@ -13,14 +13,21 @@ export default defineConfig({
     port: 5173,
   },
   build: {
-    rollupOptions: {
+    rolldownOptions: {
       output: {
-        manualChunks: {
-          vendor: ['react', 'react-dom'],
-          state: ['zustand'],
-          supabase: ['@supabase/supabase-js'],
+        manualChunks(id) {
+          if (id.includes('node_modules/react/') || id.includes('node_modules/react-dom/')) {
+            return 'vendor';
+          }
+          if (id.includes('node_modules/zustand/')) {
+            return 'state';
+          }
+          if (id.includes('node_modules/@supabase/')) {
+            return 'supabase';
+          }
         },
       },
     },
   },
 })
+
