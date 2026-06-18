@@ -23,7 +23,7 @@ export default function App() {
     <div id="shell">
       {/* ── Masthead ── */}
       <header className="masthead">
-        <div className="logo">PROMPT<em>VAULT</em></div>
+        <div className="logo">Signal<em>Hangar</em></div>
 
         <nav className="nav-tabs" aria-label="Main navigation">
           {TABS.map((tab) => (
