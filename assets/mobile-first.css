@@ -103,3 +103,61 @@ a { word-break: break-word; }
 @media (min-width: 1024px){
   .sidebar { display: block; width: 300px; }
 }
+
+/* Accessibility helper */
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;}
+
+/* Navigation and header safety */
+.site-header { position: relative; z-index: 1000; }
+.main-nav { position: static !important; display: none; }
+.main-nav.open { display: block; }
+
+/* Ensure the nav when open pushes content (not overlay) */
+@media (max-width: 800px){
+  .main-nav { position: relative !important; }
+}
+
+/* Dashboard / card layout fixes for small screens */
+.dashboard-card, .dashboard-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: flex-start;
+}
+@media (min-width: 640px) {
+  .dashboard-card { flex-direction: row; align-items: center; }
+}
+
+.dashboard-header {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  gap: 0.5rem;
+}
+
+.dashboard-title {
+  flex: 1 1 auto;
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.dashboard-meta {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.tags { display:flex; gap:0.25rem; flex-wrap:wrap; max-width:40%; }
+.rating { display:flex; align-items:center; gap:0.25rem; flex-shrink:0; }
+.cta { flex-shrink:0; }
+
+/* If the title is very long, allow it to wrap on very small screens instead of being hidden */
+@media (max-width: 420px){
+  .dashboard-title { white-space: normal; }
+  .tags { max-width: 100%; }
+}
