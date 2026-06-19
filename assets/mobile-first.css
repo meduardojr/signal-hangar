@@ -118,7 +118,7 @@ a { word-break: break-word; }
 }
 
 /* Dashboard / card layout fixes for small screens */
-.dashboard-card, .dashboard-item {
+.dashboard-card, .dashboard-item{
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
@@ -143,6 +143,7 @@ a { word-break: break-word; }
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  min-width: 0; /* critical inside flex to allow truncation */
 }
 
 .dashboard-meta {
@@ -161,3 +162,28 @@ a { word-break: break-word; }
   .dashboard-title { white-space: normal; }
   .tags { max-width: 100%; }
 }
+
+/* ---- User requested changes below ---- */
+
+/* Remove average rating entirely (hide via CSS). If you prefer removing markup, I can update templates. */
+.rating { display: none !important; }
+
+/* Ensure CTAs are visible by default (some themes hide CTAs until hover/focus). Force them visible. */
+.cta, .cta.button, .cta.btn {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+  transform: none !important;
+  transition: none !important;
+}
+
+/* Make sure CTA has adequate touch target if it's an inline link/button */
+.cta { padding: 0.5rem 0.75rem; min-height: 40px; }
+
+/* If there are rules that show CTA on :hover/:focus only (common pattern), override them */
+.cta[hidden], .cta.hidden { display: inline-flex !important; }
+
+/* End user-requested changes */
